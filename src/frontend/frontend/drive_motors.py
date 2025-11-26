@@ -128,7 +128,8 @@ def _ramp_value(current, target, max_step_accel, max_step_decel):
     - If we are slowing down (|target| <= |current|) we use max_step_decel.
     """
     delta = target - current
-    if delta == 0.0:
+    # if abs dif is small then values are equal
+    if abs(delta) < 0.000001:
         return current
 
     speeding_up = abs(target) > abs(current)
